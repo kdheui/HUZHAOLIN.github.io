@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reality</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: rgb(0, 0, 0);
+            height: 1000px;
+            
+        }
+
+        .fade-in {
+            opacity: 0; /* 初始设置为透明 */
+            animation: fadeInAnimation 8s ease-in forwards; /* 使用动画实现渐显效果 */
+            }
+
+            @keyframes fadeInAnimation {
+                0%{
+                    opacity: 0; /* 从透明度为0开始 */
+                }
+                25%{
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1; /* 渐变到完全不透明 */
+                }
+            }
+
+        .return-button {
+            position: fixed;
+            font-size: 20px;
+            padding: 1px 20px;
+            background-color: rgb(255, 0, 0);
+            color: rgb(255, 255, 255);
+            border: none;
+            cursor: pointer;
+            top: 5%;
+            left: 5%;
+            z-index: 11;
+            
+            transition: transform 0.5s ease; /* 添加过渡效果 */
+         }
+
+         .return-button:hover {
+            transform: translateY(-50%) scale(1.1); /* 悬停时放大按钮 */
+            box-shadow: 0px 5px 10px rgba(255, 255, 255, 0.5); /* 悬停时增加阴影 */
+        }
+
+        .container_1 {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-size: cover; /* 根据需要调整背景大小 */
+            overflow: hidden;
+            /* 其他背景属性 */
+        }
+
+        .image-container {
+            position: absolute;
+            /* 根据需要设置图片位置 */
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            /* 其他图片样式 */
+        }
+
+        
+        
+        .image-container:nth-child(1) {
+            right: 0%;
+            bottom:0%
+        }
+
+        .image-container:nth-child(2) {
+            top: -10vh;
+            
+            left: 0%;
+            z-index: 1;
+            
+        }
+
+        .image-container:nth-child(3) {
+            top: 0%;
+            transform-origin: left;
+            z-index: 1;
+        }
+
+         .image-container:nth-child(4) {
+            right: 10%;
+            bottom: 5%;
+            
+        }
+ 
+        .image-container:nth-child(5) {
+            top: 0%;
+            left: 30%;
+            
+            z-index: 6;
+        }
+
+        .image-container:nth-child(6) {
+            top: -7%;
+            size: cover;
+            z-index: 9;
+        }
+
+        .image-container:nth-child(7) {
+            bottom: 0%;
+            left: 0%;
+            z-index: 10;
+        }
+
+        .image-container:nth-child(8) {
+            right: 0%;
+            top: 5%;
+            z-index: 9;
+        }
+
+        .image-container:nth-child(9) {
+            bottom: 25%;
+            transform: scale(2.0);
+            left: 40%;
+            z-index: 10;
+        }
+
+        #gif-image {
+            position: absolute;
+            top: 6%;
+            left: 11%;
+            
+            z-index: 11;
+            width: 290px; /* 设置 GIF 图片的宽度 */
+            height: 180px; /* 设置高度自适应 */
+        }
+
+        
+
+        #gif-image:hover {
+            transform: scale(1.1); /* 悬停时放大图片 */
+            transition: transform 0.3s;
+            opacity: 0.5;
+        }
+
+       
+
+       
+        .container_2 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* 调整透明度 */
+            overflow: hidden; /* 隐藏溢出内容 */
+            position: relative; /* 设置相对定位 */
+            top: 100vh; /* 初始位置设置为页面高度 */
+            transition: top 0.5s ease; /* 添加过渡效果 */
+            z-index: 999;
+        }
+
+        .fixed-text {
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            color: #ffffff;
+            display: inline-block; /* 将元素转换为块级元素 */
+            border-radius: 5px; /* 圆角边框 */
+            border: 2px solid #ffffff; /* 边框样式 */
+            background-color: rgba(105, 105, 105, 0.731); /* 背景颜色和透明度 */
+            font-size: 24px;
+            z-index: 999;
+        }
+        
+
+        #randomText {
+            position: relative;
+            display: inline-block; /* 将元素转换为块级元素 */
+            font-size: 20px;
+            color: #ffffff; /* 文字颜色 */
+            word-wrap: break-word; /* 文字换行 */
+            padding: 10px; /* 文字内边距 */
+            border-radius: 5px; /* 圆角边框 */
+            border: 2px solid #ffffff; /* 边框样式 */
+            background-color: rgba(105, 105, 105, 0.731); /* 背景颜色和透明度 */
+            z-index: 999;
+            
+        }
+
+        #textInput {
+            position: relative;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            max-width: calc(100% - 20px); /* 限制文字宽度不超出容器宽度 */
+            max-height: calc(100% - 20px);
+            overflow: hidden;
+            left: 45%; 
+            top: 50%;
+        
+        }
+
+        #enterButton {
+            position: relative;
+            background-color: #4b4b4b; /* 灰色背景 */
+            color: #ffffff; /* 白色文字 */
+            border-radius: 5px;
+            padding: 10px; /* 设置内边距 */
+            font-size: 16px;
+            height: 40px; /* 与输入框高度相同 */
+            width: 60px; /* 与高度相同 */
+            cursor: pointer; /* 鼠标指针样式 */
+            margin-left: 5px; /* 留出一定间距 */
+            top: 50%;
+            left: 45%;
+        }
+
+        .backtohome {
+            position: absolute;
+            font-size: 20px;
+            padding: 1px 20px;
+            background-color: rgb(255, 0, 0);
+            color: rgb(255, 255, 255);
+            border: none;
+            cursor: pointer;
+            top: 10%;
+            right: 5%;
+            z-index: 11;
+            
+            transition: transform 0.5s ease; /* 添加过渡效果 */
+         }
+
+         .backtohome:hover {
+            transform: translateY(-50%) scale(1.1); /* 悬停时放大按钮 */
+            box-shadow: 0px 5px 10px rgba(255, 255, 255, 0.5); /* 悬停时增加阴影 */
+        }
+
+        #video-player {
+            position: fixed;
+            height: 900px;
+            width: 1800px;
+            border: 5px solid rgba(255, 255, 255, 0.5); /* 设置边框样式 */
+            border-radius: 10px;
+            box-sizing: border-box; /* 让边框计入容器尺寸 */
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            display: none;
+            z-index: 998; /* 确保视频在最顶层 */
+        }
+       
+        
+    </style>
+</head>
+<body>
+    <audio id="backgroundAudio" autoplay loop>
+        <source src="current_sound.MP3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <div class="container_1 fade-in">
+    <div class="container_1">
+        <!-- 其他图片 -->
+        <div class="image-container">
+            <img src="Rectangle.png" alt="Straight Line">
+        </div>
+        <div class="image-container">
+            <img src="Rectangle-1.png" alt="Stage Light 2">
+        </div>
+        <div class="image-container">
+            <img src="Rectangle-2.png" alt="Stage Light 1">
+        </div>
+        <div class="image-container">
+            <img src="Rectangle-3.png" alt="Singer 2">
+        </div>
+        <div class="image-container">
+            <img src="Rectangle-4.png" alt="Singer 1">
+        </div>
+        <div class="image-container">
+            <img src="Rectangle-5.png" alt="Poster 3">
+        </div>
+        <div class="image-container">
+            <img src="Rectangle-6.png" alt="Poster 2">
+            
+        </div>
+        <div class="image-container">
+            <img src="Rectangle7.png" alt="Poster 3">
+            
+        </div>
+        <div class="image-container">
+            <img src="Rectangle8.png" alt="Poster 2">
+            <img id="gif-image" src="click.gif" onclick="playVideo()">
+        </div>   
+    </div>
+
+    <video id="video-player" controls>
+        <source src="memory.mp4" type="video/quicktime">
+        Your browser does not support the video tag.
+    </video>
+    <button class="return-button" onclick="showRandomImage()">Return</button>
+    </div>
+
+    <div class="container_2">
+        <input type="text" id="textInput" placeholder="What do you want to say?">
+        <button id="enterButton">Enter</button> 
+        <div class="fixed-text">After the concert, I felt empty and powerless inside, as if life had lost its meaning.</div> 
+        <div class="fixed-text" style="top: 20%; left: 2%;">The excitement of the crowd and the euphoria of the music faded away, leaving behind a sense of loneliness and silence.</div>
+        <div class="fixed-text" style="top: 35%; left: 5%;">I tried to recall those exhilarating moments, but they felt further and further away from me, like an unreal dream.</div>
+        <div class="fixed-text" style="top: 80%; left: 60%;">The passion and energy of the concert venue faded, and the pressures and loneliness of reality hit me once again.</div>
+        <div class="fixed-text" style="top: 30%; right: 10%;">Hiding in the corner, watching others enthusiastically share their concert experiences, I felt out of place among them.</div>
+        <div class="fixed-text" style="top: 60%; left: 30%;">The concert memorabilia, filled with memories, lost its color in my eyes, becoming a silent testament to my inner distress.</div>
+        <div class="fixed-text" style="top: 70%; left: 50%;">I tried to heal myself with music, but I found that the healing power had faded away at that moment.</div>
+        <div class="fixed-text" style="top: 85%; left: 3%;">No one could understand my inner depression and loneliness; I could only silently endure the pain.</div>
+        <div class="fixed-text" style="top: 88%; left: 80%;">The days after the concert became incredibly lonely, as if the world had turned dark and heavy</div>
+        <div class="fixed-text" style="top: 90%; left: 20%;">I longed to find an outlet to escape from this post-concert depression and regain inner balance and peace.</div>
+        <button id="backToHomeButton" class="backtohome">Back to Home</button>
+    </div>
+    
+
+    
+
+   
+        <script>
+
+        function playVideo() {
+            const videoPlayer = document.getElementById('video-player');
+            videoPlayer.style.display = 'block';
+            videoPlayer.play();
+
+            // 添加视频播放结束的事件监听器
+            videoPlayer.addEventListener('ended', () => {
+                videoPlayer.style.display = 'none'; // 隐藏视频
+            });
+        }
+
+        // 返回按钮事件
+        function showRandomImage() {
+            const randomImage = document.getElementById('gif-image');
+            randomImage.style.display = 'block';
+        }
+
+           const returnButton = document.querySelector('.return-button');
+
+        returnButton.addEventListener('click', () => {
+            // 每次点击按钮后将按钮变大0.8倍
+            const currentTransform = window.getComputedStyle(returnButton).getPropertyValue('transform');
+            const currentScale = parseFloat(currentTransform.split(',')[3]);
+            returnButton.style.transform = `scale(${currentScale + 0.8})`;
+        });
+
+        returnButton.addEventListener('mouseleave', () => {
+            resetButtonSize();
+        });
+
+        function resetButtonSize() {
+            // 鼠标离开按钮时将按钮恢复原始大小
+            returnButton.style.transform = `scale(1)`;
+        }
+
+           window.addEventListener('scroll', function() {
+            var scrollPosition = window.scrollY;
+
+            // 获取容器元素
+            var container_2 = document.querySelector('.container_2');
+
+            // 设置容器上移效果
+            container_2.style.top = (100 - scrollPosition * 0.01) + '%';
+        });
+
+        const input = document.getElementById('textInput');
+    const enterButton = document.getElementById('enterButton'); // 获取 Enter 按钮
+
+    // 点击 Enter 按钮时触发输入框的 Enter 功能
+    enterButton.addEventListener('click', function () {
+        const text = input.value.trim();
+        if (text) {
+            const randomX = Math.random() * (window.innerWidth - 200); /* 随机 X 坐标 */
+            const randomY = Math.random() * (window.innerHeight - 100); /* 随机 Y 坐标 */
+
+            const newX = Math.max(0, Math.min(randomX, window.innerWidth - 200));
+            const newY = Math.max(0, Math.min(randomY, window.innerHeight - 100));
+
+            const newText = document.createElement('div');
+            newText.textContent = text;
+            newText.id = 'randomText';
+            newText.style.left = `${newX}px`;
+            newText.style.top = `${newY}px`;
+            document.body.appendChild(newText);
+            input.value = '';
+        }
+    });
+
+    // 监听键盘事件，如果按下的是 Enter 键，则触发输入框的 Enter 功能
+    input.addEventListener('keypress', function (event) {
+        if (event.key === 'Enter') {
+            enterButton.click(); // 模拟点击 Enter 按钮
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+    // 获取返回按钮元素
+    const backToHomeButton = document.getElementById('backToHomeButton');
+
+    // 添加点击事件处理程序
+    backToHomeButton.addEventListener('click', function () {
+         window.location.href = 'first_page.html';
+    });
+});
+
+        </script>
+
+        
+</body>
+    </html>
