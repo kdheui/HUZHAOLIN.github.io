@@ -1,0 +1,154 @@
+.animation-container {
+    position: fixed; /* 让容器固定在页面上 */
+    top: 0;
+    left: 0;
+    width: 100%; /* 占满整个页面 */
+    height: 100%; /* 占满整个页面 */
+}
+
+.text1, .text2, .text3, .text4 {
+    position: absolute;
+    white-space: nowrap;
+    overflow: hidden;
+    color: white;
+    font-size: 30px;
+    font-family: Arial, sans-serif;
+    font-weight: bolder;
+    transition: background-color 0.3s; /* 添加背景颜色过渡效果 */
+    background-color: transparent; /* 默认背景颜色为透明 */
+}
+
+.text1:hover {
+    background-color: rgb(94, 253, 129); /* 鼠标悬停时背景颜色改变 */
+}
+
+.text2:hover {
+    background-color: rgb(255, 0, 0); /* 鼠标悬停时背景颜色改变 */
+}
+
+.text3:hover {
+    background-color: rgb(251, 255, 0); /* 鼠标悬停时背景颜色改变 */
+}
+
+.text4:hover {
+    background-color: rgb(17, 0, 255); /* 鼠标悬停时背景颜色改变 */
+}
+
+.text1 {
+    top: 3vh;
+    left: 0; /* 初始位置在页面左侧 */
+    transform: translate(-50%, -50%);
+    animation: moveTextHorizontal 5s linear infinite; /* 添加水平移动动画，5秒一次 */
+}
+
+.text2 {
+    top: 97vh;
+    left: 0; /* 初始位置在页面左侧 */
+    transform: translate(-50%, -50%);
+    animation: moveTextHorizontal 5s linear infinite; /* 添加水平移动动画，5秒一次 */
+}
+
+.text3 {
+    top: 0;
+    left: 97%;
+    transform: translate(-50%, -50%) rotate(90deg);
+    animation: moveTextVertical 5s linear infinite; /* 添加垂直移动动画，5秒一次 */
+}
+
+.text4 {
+    top: 0;
+    left: 3%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    animation: moveTextVertical 5s linear infinite; /* 添加垂直移动动画，5秒一次 */
+}
+
+@keyframes moveTextHorizontal {
+    0% {
+        left: 40%; 
+    }
+    10% {
+        left: 60%; 
+    }
+
+    20% {
+        left: 40%; 
+    }
+
+    30% {
+        left: 60%; 
+    }
+
+    40% {
+        left: 40%; 
+    }
+
+    50% {
+        left: 60%; 
+    }
+
+    60% {
+        left: 40%; 
+    }
+
+    70% {
+        left: 60%; 
+    }
+
+    80% {
+        left: 40%; 
+    }
+
+    90% {
+        left: 60%; 
+    }
+
+    100% {
+        left: 40%; 
+    }
+}
+
+@keyframes moveTextVertical {
+    0% {
+        top: 40%; 
+    }
+    10% {
+        top: 60%; 
+    }
+
+    20% {
+        top: 40%; 
+    }
+
+    30% {
+        top: 60%; 
+    }
+
+    40% {
+        top: 40%; 
+    }
+
+    50% {
+        top: 60%; 
+    }
+
+    60% {
+        top: 40%; 
+    }
+
+    70% {
+        top: 60%; 
+    }
+
+    80% {
+        top: 40%; 
+    }
+
+    90% {
+        top: 60%; 
+    }
+
+    100% {
+        top: 40%; 
+    }
+    
+}

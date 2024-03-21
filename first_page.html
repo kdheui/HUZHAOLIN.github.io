@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            cursor: none; /* 隐藏系统默认鼠标指针 */
+        }
+
+        .container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-image: url(首页背景.gif);
+        }
+
+        #场馆入口-container {
+            position: absolute;
+            top: 40%;
+            left: 30%;
+            transform: scale(0.5);
+            transition: transform 0.3s ease-out; /* 添加出场效果 */
+            opacity: 0.5;
+            animation: blink 0.5s infinite alternate; /* 添加闪烁效果 */
+            z-index: 1; /* 确保图片在蒙版上方 */
+            cursor: none; /* 隐藏系统默认鼠标指针 */
+        }
+
+        #场馆入口-container:hover {
+            transform: scale(2.3) translateY(-50px); /* 鼠标悬浮时放大图片并移动位置 */
+            opacity: 1;
+            animation: none; /* 移除闪烁效果 */
+            cursor: none; /* 隐藏系统默认鼠标指针 */
+        }
+
+        @keyframes blink {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+
+        .text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgb(204, 255, 206);
+            text-align: center;
+            font-size: 50px;
+            text-shadow: 3px 3px 1px rgb(93, 70, 70);
+            background-color: green;
+            box-shadow: 0 0 20px rgba(139, 255, 139, 0.8);
+        }
+
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 123, 255, 0.633);
+            border-radius: 50%;
+            position: absolute;
+            pointer-events: none; /* 避免鼠标事件干扰 */
+            z-index: 9999; /* 确保在页面最上层 */
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease-out; /* 添加过渡效果 */
+            background-image: radial-gradient(circle at center, rgb(255, 134, 255),rgba(138, 255, 253, 0.792),rgb(0, 238, 255)); /* 中心渐变效果 */
+        }
+
+        body:hover .custom-cursor {
+            transform: scale(2); /* 鼠标悬浮时放大 */
+        }
+
+        .trail-circle {
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.391); /* 拖尾圆形的颜色和透明度 */
+            border-radius: 50%;
+            position: absolute;
+            pointer-events: none; /* 避免鼠标事件干扰 */
+            z-index: 9998; /* 确保在鼠标指针的下方 */
+            animation: trailFade 1s ease-out forwards; /* 添加拖尾效果动画 */
+        }
+
+        @keyframes trailFade {
+            from {
+                transform: scale(2);
+                opacity: 1;
+            }
+            to {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+
+        .navbar {
+            overflow: hidden;
+            background-color: #000000;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* 响应式导航栏 */
+        @media screen and (max-width: 600px) {
+            .navbar a {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <div class="container"></div>
+    <a id="场馆入口-container" href="javascript:void(0);" onclick="fadeOutAndRedirect()" onmousedown="changeColor()">
+        <img src="场馆入口.png" alt="场馆入口">
+        <div class="text-overlay">ENTRANCE</div> <!-- 添加文字 -->
+    </a>
+
+    <div class="custom-cursor"></div> <!-- 自定义鼠标指针 -->
+
+    <script>
+        function fadeOutAndRedirect() {
+    var opacity = 1;
+    var timer = setInterval(function () {
+        document.body.style.opacity = opacity;
+        opacity -= 0.1; // 每次减少0.1透明度
+        if (opacity <= 0) {
+            clearInterval(timer);
+            // 随机跳转到两个不同的页面
+            var randomValue = Math.random();
+            if (randomValue < 0.5) {
+                window.location.href = "flow2.html"; // 50%概率跳转到flow2.html
+            } else {
+                window.location.href = "flow1_step1.html"; // 50%概率跳转到flow1_step1.html
+            }
+        }
+    }, 50); // 每100毫秒执行一次透明度变化
+}
+
+
+                function changeColor() {
+            var customCursor = document.querySelector(".custom-cursor");
+            customCursor.style.backgroundColor = "rgba(0, 0, 255, 0.8)"; // 修改鼠标点击后的颜色为蓝色
+        }
+
+        document.addEventListener("mousemove", function (e) {
+            var customCursor = document.querySelector(".custom-cursor");
+            var trailCircle = document.createElement("div");
+            trailCircle.classList.add("trail-circle");
+            trailCircle.style.left = e.pageX + "px"; // 设置拖尾圆形的水平位置
+            trailCircle.style.top = e.pageY + "px"; // 设置拖尾圆形的垂直位置
+            document.body.appendChild(trailCircle);
+            setTimeout(function () {
+                trailCircle.remove(); // 一段时间后移除拖尾圆形
+            }, 1000); // 设置拖尾圆形存在的时间
+            customCursor.style.left = e.pageX + "px"; // 设置圆形鼠标的水平位置
+            customCursor.style.top = e.pageY + "px"; // 设置圆形鼠标的垂直位置
+        });
+    </script>
+</body>
+</html>
